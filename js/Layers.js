@@ -19,6 +19,38 @@ var peticionjsonp=function(esquema,layer,funcioncarga,viewparams){
     });    
 };
 
+
+
+var peticionjsonpCundi=function(viewparams){
+    var url = './servicios/GetVisitasSecretarias.php?' +viewparams;
+    
+    console.log(url);
+    $.getJSON( url, function( data ) {
+      $('#DivListaDependencia').empty().append('<div id="ListaDependencia"><ul class="chat"></ul></div>');
+      $.each( data, function( key, val ) {
+
+        var html='<li class="left">' +
+                       '<div class="clearfix " >' +
+                         '<button type="button" class="btn btn-default" style="width:310px">'+val.dependencia+'   <span class="badge">'+val.count+'</span></button>'+
+                        '</div>' +
+                  '</li>';
+        $("#ListaDependencia .chat").append(html);
+      });
+      $('#ListaDependencia').searchable({
+          searchField: '#searchDependencia',
+          selector: 'li',
+          childSelector: '.clearfix',
+          show: function (elem) {
+              elem.slideDown(100);
+          },
+          hide: function (elem) {
+              elem.slideUp(100);
+          }
+      });
+    });   
+
+    
+};
 var removerfeatures=function(_vectorsource){
     var nombre,i;
     var features=_vectorsource.getFeatures();
@@ -112,22 +144,12 @@ var loadFeatures = function(response) {
 var refreshfeatures=function(cobertura){
 	
     var parametros=getparametros();
-	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin+";depen_id:"+parametros.depen_id+";depen_nom:"+parametros.depen_nom; //+";"+parametros.textpeticion;
-	
-	//console.log(params);
-	/*if(parametros.msGrupo!='0'&&parametros.msGrupo!=''){
-		params=params+";nomgru:id_grupo;valgru:"+parametros.msGrupo;
-	}
-	
-	if(parametros.msSubGrupo!=''&&parametros.msSubGrupo.substring(1, 2)!='0'){
-		var subgrupo=parametros.msSubGrupo.split("-")
-		params=params+";nomgru2:id_subgrupo;valgru2:"+subgrupo[0];
-	}
-	if(parametros.msSubGrupo2!=''&&parametros.msSubGrupo2!='000'){
-		var subgrupo2=parametros.msSubGrupo2.split("-");
-		params=params+";nomgru3:id_subgrupo2;valgru3:"+subgrupo2[0];		
-	}*/
-	
+	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin+
+  ";depen_id:"+parametros.depen_id+";depen_nom:"+parametros.depen_nom;
+  var paramsCundi="fechaini="+parametros.fechaini+"&fechafin="+parametros.fechafin
+  +"&depen_nom="+parametros.depen_id+"&depen_id="+parametros.depen_nom;
+
+  peticionjsonpCundi(paramsCundi);
 	if(cobertura!=""){
 		peticionjsonp(glo.esquema,cobertura,'callback:loadFeatures',params);	
 	}else{
