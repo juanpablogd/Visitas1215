@@ -73,6 +73,25 @@ $(document).ready(function() {
 				$("#MostrarBusquedas").hide(300);
 		});
 	});
+	
+	//cargar dependencias con su respectivo CODIGO
+	
+	$.getJSON( "./servicios/GetDependencias.php", function( options ) {
+	 		options.push({"value":"000","label":"TODAS"});
+			options=options.reverse();
+			//console.log(options);
+			$('#msSubGrupo2').multiselect('dataprovider', options); 
+			$("#msSubGrupo").multiselect('enable');
+		});
+		
+	$.getJSON( "./servicios/GetDependencias.php", function( data ) {
+	  $("#Dependencias").empty().append('<option value="0" selected>TODOS</option>');
+	  $.each( data, function( key, val ) {
+	  	$("#Dependencias").append("<option value='" + val.id + "'>" + val.dependencia + "</option>");
+	    //console.log( "<option value='" + val.id + "' selected>" + val.dependencia + "</option>" );
+	  });
+	  
+	});
     
 });
 
@@ -88,12 +107,15 @@ function getMultiSelect(id){
 
 function getparametros(){
 	var escala="";
+	var depen_nom="1";
+	var depen_id="1";
+	
 	$( "#layers option:selected" ).each(function() {
    	  var str = $( this ).text();
 /*      if(str=="Vereda"){
 		escala='g_incendios_vereda';
 		
-      }else*/ 
+      }else		*/ 
       if(str=="Provincia"){
 		escala=	'g_visitas_provincia';
 		
@@ -104,6 +126,16 @@ function getparametros(){
       $("#TextEscalaMun").empty().append(str);
     });
     
+  	$( "#Dependencias option:selected" ).each(function() {
+   	  var str = $( this ).text();
+   	  //console.log("Dependencia: " + str + " - Valor: "+$( this ).val() );
+      if(str!="TODOS"){
+			depen_nom="id_dependencia";
+			depen_id=$( this ).val();
+      }
+
+      $("#TextEscalaMun").empty().append(str);
+    });
   
     var fechaini=$('#datetimepicker_ini').data("DateTimePicker").getDate().format('YYYY-MM-DD');
   	var fechafin=$('#datetimepicker_fin').data("DateTimePicker").getDate().format('YYYY-MM-DD');
@@ -112,12 +144,9 @@ function getparametros(){
   	var parametros = {
 	    fechaini:fechaini,
 	    fechafin:fechafin,
-	    escala:escala/*,
-	    msGrupo:msGrupo,
-	    msSubGrupo:msSubGrupo,
-	    msSubGrupo2:msSubGrupo2,
-	    
-	    fuente:fuente*/	
+	    escala:escala,
+	    depen_nom:depen_nom,
+	    depen_id:depen_id	
 	};
 	$('#chartContainer').hide();
 	return parametros; 

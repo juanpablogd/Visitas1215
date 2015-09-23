@@ -95,8 +95,8 @@
 						<h5 class="text-info"><small class="text-muted">Tiempo:</small> <br>
 					  		<span id="TextFechaini">2015-01-01</span> A
 					  		<span id="TextFechafin">2015-07-22</span> </h5>
-					  	<h5 class="text-info"><small class="text-muted">Escala:</small> <br>
-					  		<span id="TextEscalaMun">Municipal</span> </h5>
+					  	<h5 class="text-info"><small class="text-muted">Dependencia:</small> <br>
+					  		<span id="TextEscalaMun"></span> </h5>
 						
 										  	
 					  </div> 
@@ -148,17 +148,16 @@
                                     <span class="glyphicon glyphicon-picture  text-primary" aria-hidden="true" id="espacioColor" data-toggle="tooltip" data-placement="top" title="Mapa"></span>
                                 </a>
                             </li>
-                            <!--li role="presentation" >
-                                <a href="#eventos" aria-controls="home" role="tab" data-toggle="tab">
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true" id="eventosColor" data-toggle="tooltip" data-placement="top" title="Eventos"></span>
-                                </a>
-                            </li-->
                             <li role="presentation">
                                 <a href="#tiempo" aria-controls="profile" role="tab" data-toggle="tab">
                                     <span class="glyphicon glyphicon-time" aria-hidden="true" id="tiempoColor" data-toggle="tooltip" data-placement="top" title="Tiempo"></span>
                                 </a>
                             </li>
-                            
+                            <li role="presentation" >
+                                <a href="#eventos" aria-controls="home" role="tab" data-toggle="tab">
+                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true" id="eventosColor" data-toggle="tooltip" data-placement="top" title="Eventos"></span>
+                                </a>
+                            </li>                            
                         </ul>
                         <div class="tab-content">
                         	 <div role="tabpanel" class="tab-pane active" id="espacio">
@@ -166,17 +165,19 @@
                                 <div class="form-group">
                                     <label>Escala: </label>
                                     <select id="layers" class="form-control">
-                                    	<option value="Vereda" >Vereda</option>
                                         <option value="Municipio" selected>Municipio</option>
                                         <option value="Provincia">Provincia</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <!--div role="tabpanel" class="tab-pane " id="eventos">
+                            <div role="tabpanel" class="tab-pane" id="eventos">
                             	<center> <h5><b>EVENTOS</b></h5></center>
+									<label>Dependencias: </label>
+                                    <select id="Dependencias" class="form-control">
+                                    </select>
                                
-                            </div-->
+                            </div>
                             <div role="tabpanel" class="tab-pane" id="tiempo">
                                 <center><h5><b>TIEMPO</b></h5></center>
                                 <div class="form-group">

@@ -36,6 +36,7 @@ var RecorrerGeoJson=function(response){
 	var NewGeoJsonRemove=turf.remove(NewGeoJson,glo.varMapeo,0);
 	var lgGJson=NewGeoJsonRemove.features.length;
 	//console.log(NewGeoJsonRemove);
+	console.log("Numero de Features"+ lgGJson);
 	var TotalCasos=0;
 
 	if(lgGJson==0){
@@ -61,7 +62,7 @@ var RecorrerGeoJson=function(response){
 				$( "#ListadoOrden" ).append('<hr>...<hr>');
 			}	
 			//si esta en el numero de registros a mostrar lo adiciona al mapa
-			if(jQuery.inArray( (index+1), num_registros_mostrar ) > -1){
+			if((index+1)<=5 || (index+1)> (lgGJson-5)){
 				$( "#ListadoOrden" ).append('<span id="orden1"></span>'+(index+1)+'. '+value.properties['nombre']+ ' ('+value.properties[glo.varMapeo]+')</h5><br>');	
 			}
 			//console.log("Indice recorrido: " + index);	//<span id="orden1"></span>1. Girardot (321)</h5>		
@@ -111,8 +112,9 @@ var loadFeatures = function(response) {
 var refreshfeatures=function(cobertura){
 	
     var parametros=getparametros();
-	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin;//+";"+parametros.textpeticion;
+	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin+";depen_id:"+parametros.depen_id+";depen_nom:"+parametros.depen_nom; //+";"+parametros.textpeticion;
 	
+	//console.log(params);
 	/*if(parametros.msGrupo!='0'&&parametros.msGrupo!=''){
 		params=params+";nomgru:id_grupo;valgru:"+parametros.msGrupo;
 	}
