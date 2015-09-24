@@ -62,6 +62,7 @@
     <script src="./functions/datetimepicker/build/js/bootstrap-datetimepicker.es.js"></script>
     <script src="./functions/datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
  	<script src="./functions/waitingDialog/waitingDialog.js"></script>
+    <script src="./functions/Searchable/jquery.searchable-1.1.0.min.js"></script>
    
     <title id="titulo_mapa"></title>
 </head>
@@ -104,7 +105,25 @@
 				</div>
 				
 	    </div>
-
+        
+        <div class="panel panel-primary" id="PanelSecretarias">
+            <div class="panel-body">
+                
+                <div class="input-group custom-search-form">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"  disabled>
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                    <input type="search" id="searchDependencia" value="" class="form-control" placeholder="Buscar...">
+                  
+                </div>
+                <br />
+                <div id="DivListaDependencia">
+                    <div id="ListaDependencia"><ul class="chat"></ul></div>
+                </div>
+            </div>
+         </div>
         <div id="chartContainer" style="background-color: rgba(255, 255, 255, 0.5)"></div>
         <div id="chartContainer1" style="background-color: rgba(255, 255, 255, 0.5)"></div>
 
@@ -126,6 +145,11 @@
         <div id="BtnMonstrarBusquedas">
             <button type="button" class="btn btn-primary" id="MostrarBusquedas">
                 <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span> Opciones
+            </button>
+        </div>
+        <div id="PanelMostrarOcultar">
+            <button type="button" class="btn btn-primary btn-xs" id="BtnMostrarBusquedas">
+                <span class="glyphicon glyphicon-chevron-up " aria-hidden="true"></span> Ocultar Sec.
             </button>
         </div>
         <div class="col-sm-2 col-md-2" id="panelBusquedas" style="width:200px;">

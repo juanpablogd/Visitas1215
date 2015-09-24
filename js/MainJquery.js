@@ -68,6 +68,25 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('#PanelMostrarOcultar').on('click', function(e) {
+/*	    e.preventDefault();
+	    var $this = $(this);
+	    var $collapse = $this.closest('.collapse-group').find('.collapse');
+	    $collapse.collapse('toggle');*/
+	   //
+	   console.log($("#PanelSecretarias").is(":visible"));
+	   
+	   if ($("#PanelSecretarias").is(":visible") == true) {
+	   		$("#BtnMostrarBusquedas").html('<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Mostrar Sec.');
+	   }
+       else { 
+			$("#BtnMostrarBusquedas").html('<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Ocultar Sec.');
+       }
+       $("#PanelSecretarias").collapse('toggle');
+	});
+	//inicializa el control mostrandolo
+	$("#PanelSecretarias").collapse('toggle');
+	
 	$("#MostrarBusquedas").click(function(){
 		$("#panelBusquedas").show( 300, function() {
 				$("#MostrarBusquedas").hide(300);
@@ -155,76 +174,5 @@ function getparametros(){
 function filtrar(){
 	refreshfeatures("");
 }
-/*
-$('#msGrupo,#msSubGrupo,#msSubGrupo2').multiselect({
-    	includeSelectAllOption: true,
-    	enableFiltering: true,
-    	enableCaseInsensitiveFiltering: true,
-    	buttonWidth: '150px',
-        dropRight: true,
-        maxHeight: 250,
-        filterPlaceholder:'Buscar...',
-        buttonText: function(options, select) {
-        		
-                var labels = [];
-                options.each(function() {
-                     if ($(this).attr('label') !== undefined) {
-                         labels.push($(this).attr('label'));
-                     }
-                     else {
-                         labels.push($(this).html());
-                     }
-                 });
-                 return labels.join(', ') + '';
-        },
-        onChange: function(element, checked) {
-         	var arrayvalues=element.attr('value').split("-");
-	        if(arrayvalues.length==1){
-	        	if(arrayvalues[0]=='0'){
-	        		$('#msSubGrupo').multiselect('dataprovider', []);
-	        		$("#msSubGrupo").multiselect('disable'); 
-	        		$('#msSubGrupo2').multiselect('dataprovider', []);
-	        		$("#msSubGrupo2").multiselect('disable'); 
-				}else{
-					$("#msSubGrupo").multiselect('enable');
-					$('#msSubGrupo').multiselect('dataprovider', []);
-					loadSubGrupos(element.attr('value'));
-					$('#msSubGrupo2').multiselect('dataprovider', []);
-	        		$("#msSubGrupo2").multiselect('disable'); 
-				}
-	        }else if(arrayvalues.length==2){
-	        	if(arrayvalues[0]=='30'){
-	        		$('#msSubGrupo2').multiselect('dataprovider', []);
-	        		$("#msSubGrupo2").multiselect('disable'); 
-				}else{
-					$("#msSubGrupo2").multiselect('disable'); 
-					$('#msSubGrupo2').multiselect('dataprovider', []); 
-					loadSubGrupo2(arrayvalues[0]);
-				}
-	        } 	
-	    }
-    });
-    
-	$.getJSON( "./services/GetGrupos.php", function( options ) {
-		options=options.reverse();
-		$('#msGrupo').multiselect('dataprovider', options);
-		$("#msSubGrupo").multiselect('disable');
-		$("#msSubGrupo2").multiselect('disable'); 
- 	});	
- 	function loadSubGrupos(clave){
- 		$.getJSON( "./services/GetSubGrupos.php?clave="+clave, function( options ) {
-			options=options.reverse();
-			$('#msSubGrupo').multiselect('dataprovider', options); 
- 		});		
- 	}
- 	function loadSubGrupo2(clave){
-	 	$.getJSON( "./services/GetSubGrupos2.php?clave="+clave, function( options ) {
-	 		options.push({"value":"000","label":"TODAS"});
-			options=options.reverse();
-			console.log(options);
-			$('#msSubGrupo2').multiselect('dataprovider', options); 
-			$("#msSubGrupo").multiselect('enable');
-		});	
- 	}*/
- 	
+
 

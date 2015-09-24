@@ -19,6 +19,38 @@ var peticionjsonp=function(esquema,layer,funcioncarga,viewparams){
     });    
 };
 
+
+
+var peticionjsonpCundi=function(viewparams){
+    var url = './servicios/GetVisitasSecretarias.php?' +viewparams;
+    
+    console.log(url);
+    $.getJSON( url, function( data ) {
+      $('#DivListaDependencia').empty().append('<div id="ListaDependencia"><ul class="chat"></ul></div>');
+      $.each( data, function( key, val ) {
+
+        var html='<li class="left">' +
+                       '<div class="clearfix " >' +
+                         '<button type="button" class="btn btn-default text-left" style="width:310px"><span class="badge">'+val.count+'</span> '+val.dependencia+'</button>'+
+                        '</div>' +
+                  '</li>';
+        $("#ListaDependencia .chat").append(html);
+      });
+      $('#ListaDependencia').searchable({
+          searchField: '#searchDependencia',
+          selector: 'li',
+          childSelector: '.clearfix',
+          show: function (elem) {
+              elem.slideDown(100);
+          },
+          hide: function (elem) {
+              elem.slideUp(100);
+          }
+      });
+    });   
+
+    
+};
 var removerfeatures=function(_vectorsource){
     var nombre,i;
     var features=_vectorsource.getFeatures();
@@ -63,7 +95,7 @@ var RecorrerGeoJson=function(response){
 			}	
 			//si esta en el numero de registros a mostrar lo adiciona al mapa
 			if((index+1)<=5 || (index+1)> (lgGJson-5)){
-				$( "#ListadoOrden" ).append('<span id="orden1"></span>'+(index+1)+'. '+value.properties['nombre']+ ' ('+value.properties[glo.varMapeo]+')</h5><br>');	
+				$( "#ListadoOrden" ).append('<span id="orden1" class="nom_mpio">'+(index+1)+'. '+value.properties['nombre']+ ' ('+value.properties[glo.varMapeo]+')</span><br>');	
 			}
 			//console.log("Indice recorrido: " + index);	//<span id="orden1"></span>1. Girardot (321)</h5>		
 
@@ -112,22 +144,12 @@ var loadFeatures = function(response) {
 var refreshfeatures=function(cobertura){
 	
     var parametros=getparametros();
-	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin+";depen_id:"+parametros.depen_id+";depen_nom:"+parametros.depen_nom; //+";"+parametros.textpeticion;
-	
-	//console.log(params);
-	/*if(parametros.msGrupo!='0'&&parametros.msGrupo!=''){
-		params=params+";nomgru:id_grupo;valgru:"+parametros.msGrupo;
-	}
-	
-	if(parametros.msSubGrupo!=''&&parametros.msSubGrupo.substring(1, 2)!='0'){
-		var subgrupo=parametros.msSubGrupo.split("-")
-		params=params+";nomgru2:id_subgrupo;valgru2:"+subgrupo[0];
-	}
-	if(parametros.msSubGrupo2!=''&&parametros.msSubGrupo2!='000'){
-		var subgrupo2=parametros.msSubGrupo2.split("-");
-		params=params+";nomgru3:id_subgrupo2;valgru3:"+subgrupo2[0];		
-	}*/
-	
+	var params="&viewparams=fechaini:"+parametros.fechaini+";fechafin:"+parametros.fechafin+
+  ";depen_id:"+parametros.depen_id+";depen_nom:"+parametros.depen_nom;
+  var paramsCundi="fechaini="+parametros.fechaini+"&fechafin="+parametros.fechafin
+  +"&depen_nom="+parametros.depen_id+"&depen_id="+parametros.depen_nom;
+
+  peticionjsonpCundi(paramsCundi);
 	if(cobertura!=""){
 		peticionjsonp(glo.esquema,cobertura,'callback:loadFeatures',params);	
 	}else{

@@ -5,6 +5,25 @@
         height: 100%;
         overflow:hidden;
       }
+      
+	 .btn-default {
+	    font-size: 15px !important; 
+	    padding: 3px 7px !important;
+	    text-align: left !important;
+	  }
+	  .nom_mpio{
+		font-size: 13px !important; 
+	  }
+	  
+	  #PanelMostrarOcultar{ position:absolute;
+	
+ 		 z-index:3;
+		 top: 100px;
+		 left: 1px;
+		 width: 350px;  
+		 max-height: 300px;	  
+		}
+      
       div.ol-logo {
       	left: 65px;
 	  }
@@ -139,6 +158,8 @@
 		 min-width: 300px;  
 		 min-height: 400px;	  
 		}
+
+		
 		#chartContainer1{ position:absolute;
 		display: none;
  		 z-index:3;
@@ -269,6 +290,7 @@ hr.style-four {
     top: 45px;
     right: -15px;
     background: rgba(255, 255, 255, 0.1);
+    width: 240px !important;
 }
 
 .well {
@@ -322,4 +344,42 @@ hr {
     margin-bottom: 2px;
     border: 0;
     border-top: 1px solid #eee;
+}
+#PanelSecretarias{ position:absolute;
+		
+ 		 z-index:3;
+		 top: 123px;
+		 left: 1px;
+		 width: 350px;  
+		 max-height: 300px;	  
+		}
+
+.btn-default .badge {
+    background-color: #2A6598 !important;
+}
+
+.form-group {
+    margin-bottom: 4px;
+}
+
+#DivListaDependencia{
+	max-width: 340px;
+	max-height:280px;
+	overflow: true;
+
+
+}
+
+.clearfix {
+    padding-left: 1px;
+}
+.chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#ListaDependencia {
+    max-height: 230px;
+    overflow: scroll;
 }
