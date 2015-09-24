@@ -348,12 +348,17 @@ hr {
 #PanelSecretarias{ position:absolute;
 		
  		 z-index:3;
+<<<<<<< HEAD
 		 top: 123px;
+=======
+		 top: 100px;
+>>>>>>> origin/master
 		 left: 1px;
 		 width: 350px;  
 		 max-height: 300px;	  
 		}
 
+<<<<<<< HEAD
 .btn-default .badge {
     background-color: #2A6598 !important;
 }
@@ -362,6 +367,8 @@ hr {
     margin-bottom: 4px;
 }
 
+=======
+>>>>>>> origin/master
 #DivListaDependencia{
 	max-width: 340px;
 	max-height:280px;
@@ -371,7 +378,11 @@ hr {
 }
 
 .clearfix {
+<<<<<<< HEAD
     padding-left: 1px;
+=======
+    padding-left: 10px;
+>>>>>>> origin/master
 }
 .chat {
     list-style: none;

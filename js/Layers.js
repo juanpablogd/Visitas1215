@@ -31,7 +31,11 @@ var peticionjsonpCundi=function(viewparams){
 
         var html='<li class="left">' +
                        '<div class="clearfix " >' +
+<<<<<<< HEAD
                          '<button type="button" class="btn btn-default text-left" style="width:310px"><span class="badge">'+val.count+'</span> '+val.dependencia+'</button>'+
+=======
+                         '<button type="button" class="btn btn-default" style="width:310px">'+val.dependencia+'   <span class="badge">'+val.count+'</span></button>'+
+>>>>>>> origin/master
                         '</div>' +
                   '</li>';
         $("#ListaDependencia .chat").append(html);
